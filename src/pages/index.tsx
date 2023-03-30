@@ -140,11 +140,11 @@ export default function Home() {
   }, [user, postStateValue.posts]);
 
   return (
-    <Flex align='center' justify='space-evenly' m='10px 10px 10px 10px'>
+    <Flex align='center' justify='space-evenly' >
     <PageContent>
       <>
         {loading ? (
-          <PostLoader />
+            <PostLoader />
         ) : (
           <Stack>
             <CreatePostLink />
@@ -167,7 +167,7 @@ export default function Home() {
           </Stack>
         )}
       </>
-      <Stack spacing={5}>
+      <Stack width="80%" spacing={5}>
         <Recommendations />
         <Premium />
         <PersonalHome />
