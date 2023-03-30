@@ -10,7 +10,7 @@ import PostLoader from "@/components/Posts/PostLoader";
 import { auth, firestore } from "@/firebase/clientApp";
 import useCommunityData from "@/hooks/useCommunityData";
 import usePosts from "@/hooks/usePosts";
-import { Stack } from "@chakra-ui/react";
+import { Flex, Stack } from "@chakra-ui/react";
 import {
   collection,
   getDocs,
@@ -140,6 +140,7 @@ export default function Home() {
   }, [user, postStateValue.posts]);
 
   return (
+    <Flex align='center' justify='space-evenly' m='10px 10px 10px 10px'>
     <PageContent>
       <>
         {loading ? (
@@ -172,5 +173,6 @@ export default function Home() {
         <PersonalHome />
       </Stack>
     </PageContent>
+    </Flex>
   );
 }
