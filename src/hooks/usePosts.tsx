@@ -151,7 +151,7 @@ const usePosts = () => {
         await deleteObject(imageRef);
       }
 
-      const postDocRef = doc(firestore, `posts`, post.id);
+      const postDocRef = doc(firestore, "posts", post.id as string);
       await deleteDoc(postDocRef);
 
       setPostStateValue((prev) => ({
