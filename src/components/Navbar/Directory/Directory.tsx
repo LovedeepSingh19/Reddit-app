@@ -18,6 +18,7 @@ const UserMenu: React.FC = () => {
   return (
     <Menu isOpen={directoryState.isOpen}>
       <MenuButton
+      zIndex={10}
         cursor="pointer"
         borderRadius={4}
         padding="0px 6px"

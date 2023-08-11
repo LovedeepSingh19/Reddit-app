@@ -1,10 +1,12 @@
 import { Flex, Icon } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React from "react";
 import { BsArrowUpRightCircle, BsChatDots } from "react-icons/bs";
 import {GrAdd} from "react-icons/gr"
 import {IoFilterCircleOutline, IoNotificationsOutline, IoVideocamOutline} from "react-icons/io5"
 
 const Icons: React.FC = () => {
+  const router = useRouter();
   return (
     <Flex>
       <Flex
@@ -21,7 +23,8 @@ const Icons: React.FC = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
           fontSize={20}
-        >
+          onClick={() =>router.push('/underDevelopment')}
+          >
           <Icon as={BsArrowUpRightCircle} />
         </Flex>
         <Flex
@@ -32,6 +35,7 @@ const Icons: React.FC = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
           fontSize={22}
+          onClick={() =>router.push('/underDevelopment')}
           >
           <Icon as={IoFilterCircleOutline} />
         </Flex>
@@ -43,7 +47,8 @@ const Icons: React.FC = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
           fontSize={22}
-        >
+          onClick={() =>router.push('/underDevelopment')}
+          >
           <Icon as={IoVideocamOutline} />
         </Flex>
       </Flex>
@@ -56,7 +61,8 @@ const Icons: React.FC = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
           fontSize={20}
-        >
+          onClick={() =>router.push('/underDevelopment')}
+          >
           <Icon as={BsChatDots} />
         </Flex>
         <Flex
@@ -67,7 +73,8 @@ const Icons: React.FC = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
           fontSize={20}
-        >
+          onClick={() =>router.push('/underDevelopment')}
+          >
           <Icon as={IoNotificationsOutline} />
         </Flex>
         <Flex
@@ -79,6 +86,7 @@ const Icons: React.FC = () => {
           borderRadius={4}
           _hover={{ bg: "gray.200" }}
           fontSize={20}
+          onClick={() =>router.push('/underDevelopment')}
         >
           <Icon as={GrAdd} />
         </Flex>

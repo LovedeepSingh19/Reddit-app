@@ -73,6 +73,7 @@ const CreatePostLink: React.FC = () => {
         fontSize={24}
         color="gray.400"
         cursor="pointer"
+        onClick={onClick}
       />
       <Icon
         as={BsLink45Deg}
@@ -80,6 +81,7 @@ const CreatePostLink: React.FC = () => {
         fontSize={24}
         color="gray.400"
         cursor="pointer"
+        onClick={onClick}
       />
     </Flex>
   );

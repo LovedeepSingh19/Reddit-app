@@ -19,6 +19,7 @@ import { auth } from "@/firebase/clientApp";
 import { useSetRecoilState } from "recoil";
 import { authModalState } from "@/atoms/authModalAtom";
 import { IoSparkles } from "react-icons/io5";
+import { useRouter } from "next/router";
 
 type UserMenuProps = {
   user?: User | null;
@@ -27,10 +28,15 @@ type UserMenuProps = {
 const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
 
   const setAuthStateModal = useSetRecoilState(authModalState);
+  const router = useRouter();
 
   const logOut = async () => {
     await signOut(auth);
   };
+
+  const navigation = (user: User) => {
+    router.push(`/user/${user.displayName}`)
+  }
 
   return (
     <Menu>
@@ -80,6 +86,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               fontSize="10pt"
               fontWeight={700}
               _hover={{ bg: "blue.500", color: "white" }}
+              onClick={() => navigation(user)}
             >
               <Flex>
                 <Icon mr={2} fontSize={20} as={CgProfile} />

@@ -1,6 +1,7 @@
 import { communityState } from "@/atoms/communitiesAtom";
 import { DirectoryMenuItem, DirectoryMenuState } from "@/atoms/directoryAtom";
 import { useRouter } from "next/router";
+import { url } from "node:inspector";
 import React, { useEffect } from "react";
 import { FaReddit } from "react-icons/fa";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -12,11 +13,21 @@ const useDirectory = () => {
     const communityStateValue = useRecoilValue(communityState);
 
     const onSelectMenuItem = (menuItem: DirectoryMenuItem) => {
+        if(router.pathname!=='/'){
+            // window.history.replaceState(null, menuItem.link)
+    router.replace(menuItem.link).then(() => 
+    router.reload()
+    )
+
+}
         setDirectoryState(prev => ({
             ...prev,
             selectedMenuItem: menuItem
         }))
-        router.push(menuItem.link)
+        router.push(menuItem.link).then(() =>
+        router.reload()
+        )
+
         if(directoryState.isOpen){
             toggleMenuOpen();
         }

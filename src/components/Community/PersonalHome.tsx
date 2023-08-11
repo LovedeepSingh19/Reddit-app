@@ -1,9 +1,53 @@
 import { Button, Flex, Icon, Stack, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { FaReddit } from "react-icons/fa";
 
+import { authModalState } from "@/atoms/authModalAtom";
+import { auth } from "@/firebase/clientApp";
+import useDirectory from "@/hooks/useDirectory";
+import { useRouter } from "next/router";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useSetRecoilState } from "recoil";
+import CreateCommunityModal from "../Modal/CreateCommunity/CreateCommunityModal";
+
+
 const PersonalHome: React.FC = () => {
+  const router = useRouter();
+  const [user] = useAuthState(auth);
+
+  const setAuthModal = useSetRecoilState(authModalState);
+  const { toggleMenuOpen } = useDirectory();
+
+  const [open, setOpen] = useState(false);
+
+  const onClickCommunity = () => {
+    if(!user){
+      setAuthModal({ open: true, view: "login" });
+      return;
+    }else{
+      setOpen(true);
+    }
+
+  }
+
+  const onClick = () => {
+    if (!user) {
+      setAuthModal({ open: true, view: "login" });
+      return;
+    }
+    const { communityId } = router.query;
+    if (communityId) {
+      router.push(`/r/${communityId}/submit`);
+      return
+    }
+
+    toggleMenuOpen();
+  };
+
+  
   return (
+    <>
+          <CreateCommunityModal open={open} handleClose={() => setOpen(false)} />
     <Flex
       direction="column"
       bg="white"
@@ -33,13 +77,14 @@ const PersonalHome: React.FC = () => {
           <Text fontSize="9pt">
             Your personal Reddit frontpage, build for you.
           </Text>
-          <Button height="30px">Create Post</Button>
-          <Button variant="outline" height="30px">
+          <Button height="30px" onClick={onClick}>Create Post</Button>
+          <Button variant="outline" height="30px" onClick={onClickCommunity}>
             Create Community
           </Button>
         </Stack>
       </Flex>
     </Flex>
+    </>
   );
 };
 export default PersonalHome;
